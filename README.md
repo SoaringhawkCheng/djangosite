@@ -1,5 +1,5 @@
 ## 项目结构
-
+```
 ├── biz # 业务逻辑代码
 ├── common # 公共代码
 │.. ├── constant # 常量
@@ -32,6 +32,7 @@
 ├── .editorconfig # editorconfig
 ├── .gitignore # git不跟踪的文件
 └── README.md # 项目说明
+```
 
 ## 代码分层
 
