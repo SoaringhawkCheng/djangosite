@@ -1,4 +1,5 @@
 ## 项目结构
+
 ├── biz # 业务逻辑代码
 ├── common # 公共代码
 │.. ├── constant # 常量
@@ -33,6 +34,7 @@
 └── README.md # 项目说明
 
 ## 代码分层
+
 decorator: 权限校验
 view层: 编写请求参数处理、业务逻辑处理、响应的返回等等
 dal层: 数据库读写
@@ -43,6 +45,7 @@ util：常见工具，string util md5
 异常定义:
 
 ## 依赖说明
+
 views 依赖biz, biz依赖 validate和dals
 validate和dals可能相互依赖, 比如说校验数据库里是否存在
 validata和dals再依赖common和constant
@@ -50,6 +53,7 @@ common依赖constant
 constant不能依赖其他的
 
 ## 代码demo
+
 ```
 # view最薄，只负责获取请求数据，调用biz处理业务逻辑, 返回response三个事情 biz里调用validate做业务逻辑处理
 # function based views
