@@ -2,4 +2,4 @@
 *.pyc
 .idea/
 **/.idea/
-djangosite_env/
+django_env/

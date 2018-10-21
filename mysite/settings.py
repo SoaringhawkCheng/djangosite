@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for mysite project.
 
@@ -39,7 +40,8 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles', # 模板中可以使用静态文件过滤器
+    'mysite.blog'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -86,20 +88,22 @@ DATABASES = {
         'PORT': 3306
     }
 }
-pymysql.install_as_MySQLdb()
+pymysql.install_as_MySQLdb() # py3改变了链接库
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh_cn'
 
 TIME_ZONE = 'UTC'
+# TIME_ZONE = 'Europe/Athens'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False # 激活时区
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
