@@ -1,0 +1,5 @@
+.DS_store
+*.pyc
+.idea/
+**/.idea/
+djangosite_env/
