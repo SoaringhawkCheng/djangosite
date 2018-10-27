@@ -40,7 +40,8 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles', # 模板中可以使用静态文件过滤器
+    'django.contrib.staticfiles',  # 模板中可以使用静态文件过滤器
+    'taggit', # tag插件
     'mysite.blog'
 )
 
@@ -88,13 +89,13 @@ DATABASES = {
         'PORT': 3306
     }
 }
-pymysql.install_as_MySQLdb() # py3改变了链接库
+pymysql.install_as_MySQLdb()  # py3改变了链接库
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
 # LANGUAGE_CODE = 'en-us'
-LANGUAGE_CODE = 'zh_cn'
+LANGUAGE_CODE = 'zh_hans'
 
 TIME_ZONE = 'UTC'
 # TIME_ZONE = 'Europe/Athens'
@@ -103,12 +104,19 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = False # 激活时区
+USE_TZ = False  # 激活时区
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
 
-if __name__ == "__main__":
-    print(BASE_DIR)
+EMAIL_HOST = 'smtp.gmail.com'
+
+EMAIL_HOST_USER = 'soaringhawkcheng@gmail.com'
+
+EMAIL_HOST_PASSWORD = 'cxh19930406'
+
+EMAIL_POT = 587
+
+EMAIL_USE_TLS = True
