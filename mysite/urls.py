@@ -16,8 +16,17 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
+from mysite.blog.sitemaps import PostSitemap
+
+sitemaps = {
+    'posts': PostSitemap
+}
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^blog/', include('blog.urls', namespace='blog', app_name='blog'))  # TODO:namespace app_name
+    url(r'^blog/', include('blog.urls', namespace='blog', app_name='blog')),  # TODO:namespace app_name
+    # app_name, 应用命名空间, 表示正在部署的应用的名称
+    # namespace, 表示应用的一个特定的实例
+    url(r'^sitemap.xml$', sitemap, {'sitemaps': sitemaps}, name='sitemapurl')
 ]

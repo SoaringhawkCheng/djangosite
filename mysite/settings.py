@@ -41,8 +41,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',  # 模板中可以使用静态文件过滤器
-    'taggit', # tag插件
-    'mysite.blog'
+    'mysite.blog',
+    'django.contrib.sitemaps',  # 站点地图
+    'taggit',  # tag插件
+    'haystack', # 为了在django中使用solr
 )
 
 MIDDLEWARE_CLASSES = (
@@ -90,6 +92,13 @@ DATABASES = {
     }
 }
 pymysql.install_as_MySQLdb()  # py3改变了链接库
+
+HAYSTACK_CONNECTIONS = {
+    'default':{
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': 'http://127.0.0.1:8983/solr/blog'
+    }
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/

@@ -1,1 +1,2 @@
-python manage.py runserver 8004
+tmux
+python manage.py 8004
