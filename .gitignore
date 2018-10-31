@@ -4,4 +4,4 @@
 **/.idea/
 django_env/
 solr/
-!solr/example/solr/blsi    g/
+!solr/example/solr/blg/

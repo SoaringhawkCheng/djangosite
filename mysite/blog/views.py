@@ -2,11 +2,12 @@
 from django.core.mail import send_mail
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404
+from haystack.query import SearchQuerySet
+from taggit.models import Tag
 
+from mysite.blog.forms import EmailPostForm, CommentForm, SearchForm
 from mysite.blog.models import Post
 from mysite.settings import EMAIL_HOST_USER
-from mysite.blog.forms import EmailPostForm, CommentForm
-from taggit.models import Tag
 
 
 # Create your views here.
@@ -71,3 +72,17 @@ def post_share(request, post_id):
         form = EmailPostForm()
 
     return render(request, 'blog/post/share.html', context={'post': post, 'form': form, 'sent': sent})
+
+
+def post_search(request):
+    form = SearchForm()
+    cd = results = total_results = None
+    if 'query' in request.GET:
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            cd = form.cleaned_data
+            results = SearchQuerySet().models(Post).filter(content=cd["query"]).load_all()
+            total_results = results.count()
+
+    return render(request, 'blog/post/search.html',
+                  {'form': form, 'cd': cd, 'results': results, 'total_results': total_results})
