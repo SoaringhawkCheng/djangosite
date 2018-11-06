@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
+from django.contrib.auth.decorators import login_required
 
 def user_login(request):
     if request.method == 'POST':
@@ -15,7 +16,7 @@ def user_login(request):
             user = authenticate(username=cd['username'], password=cd['password'])
             if user is not None:
                 if user.is_active:
-                    login(request, user) # 将用户设置到当前的会话session中
+                    login(request, user)  # 将用户设置到当前的会话session中
                     return HttpResponse('Authenticated successfully')
                 else:
                     return HttpResponse('Disable account')
@@ -26,3 +27,8 @@ def user_login(request):
     else:
         form = LoginForm()
     return render(request, 'account/login.html', {'form': form})
+
+@login_required
+def dashboard(request):
+    # 根据section的值添加class selected(css中line 66 li.selected)
+    return render(request, 'account/dashboard.html', {'section': 'dashboard'})

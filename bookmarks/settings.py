@@ -14,6 +14,7 @@ import os
 import sys
 
 import pymysql
+from django.core.urlresolvers import reverse_lazy
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -44,10 +45,10 @@ INSTALLED_APPS = [
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware', # 通过请求requests操作当前应用sessions
+    'django.contrib.sessions.middleware.SessionMiddleware',  # 通过请求requests操作当前应用sessions
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware', # 使用会话sessions将用户和请求requests进行关联
+    'django.contrib.auth.middleware.AuthenticationMiddleware',  # 使用会话sessions将用户和请求requests进行关联
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -119,6 +120,10 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = False
+
+LOGIN_REDIRECT_URL = reverse_lazy('dashboard')
+LOGIN_URL = reverse_lazy('login')
+LOGOUT_URL = reverse_lazy('logout')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
